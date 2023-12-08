@@ -1,4 +1,4 @@
-/* rexx - Advento of code Day 1 - 2003 */
+/* rexx - Advento of code Day 1 - 2023 */
 
 drop in.
 x = 0
