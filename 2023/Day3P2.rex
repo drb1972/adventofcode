@@ -2,10 +2,10 @@
 
 call leer_fichero
 call tabla_coordenadas
-call dejar_solo_numeros
+/* call dejar_solo_numeros
 Tot = 0
 call proceso
-say 'Total = ' Tot
+say 'Total = ' Tot */
 exit
 
 proceso:
@@ -88,6 +88,8 @@ tabla_coordenadas:
    drop special.
    drop chars.
    i_char = 0
+   drop asterisco.
+   i_ast  = 0
    do i = 1 to work.0
       work.i = changestr(".",work.i," ")
       do j = 0 to 9
@@ -98,12 +100,20 @@ tabla_coordenadas:
       
       do j = 1 to palabras
          donde = wordindex(work.i,j)
-         special.i.donde = 'si'
+         if substr(work.i,donde,1) = '*' then do
+            i_ast = i_ast + 1 
+            asterisco.i_ast = i ',' donde
+         end /* if */
          i_char = i_char + 1
          chars.i_char = substr(work.i,donde,1)
       end
    end
+   asterisco.0 = i_ast
    chars.0 = i_char
+
+do i = 1 to asterisco.0
+say asterisco.i 
+end
 
 /* do i = 1 to 12
    do j = 1 to 12
@@ -116,6 +126,7 @@ leer_fichero:
    drop in.
    x = 0
    input_file  = 'Day3P1_Input.txt'
+   input_file  = 'temp.txt'
 
    do while lines(input_file) \= 0
       x = x+1
