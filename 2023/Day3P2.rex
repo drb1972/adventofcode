@@ -2,72 +2,124 @@
 
 call leer_fichero
 call tabla_coordenadas
-/* call dejar_solo_numeros
+call dejar_solo_numeros
 Tot = 0
 call proceso
-say 'Total = ' Tot */
+/* say 'Total = ' Tot  */
 exit
 
 proceso:
 
-   do i = 1 to work.0 
-      palabras = words(work.i)
-      if palabras = 0 then iterate
-      do j = 1 to palabras
-         sumar = 'no'
-         numero = word(work.i,j)
-         digitos = length(numero)
-         donde = wordindex(work.i,j)
-         call buscar_izq 
-         if sumar = 'si' then do
-            Tot = Tot + numero
-            iterate
-         end /* if */
+   do i = 1 to asterisco.0
+      producto = 1
+      parse var asterisco.i fila ',' columna
+      fila = strip(fila)
+      columna = strip(columna)
+      contador = 0
+      call buscar_candidato
+      if candidatos > 1 then do
+         call buscar_izq
          call buscar_derecha
-         if sumar = 'si' then do
-            Tot = Tot + numero
-            iterate
-         end /* if */
-         call buscar_arriba
-         if sumar = 'si' then do
-            Tot = Tot + numero
-            iterate
-         end /* if */
-         call buscar_abajo
-         if sumar = 'si' then do
-            Tot = Tot + numero
-            iterate
-         end /* if */
-      end /* do j */
+      end
 
+
+
+/* say 'cont 'contador
+say 'num_i 'num_i
+say 'num_d ' num_d */
    end /* do i */
+
 return
 
-buscar_izq:
-   columna = donde - 1
-   if special.i.columna = 'si' then sumar = 'si'
-return
-
-buscar_derecha:
-   columna = donde + digitos
-   if special.i.columna = 'si' then sumar = 'si'
-return
-
-buscar_arriba:
-   columna = donde - 1
-   fila = i - 1
-   posiciones = columna + digitos + 1
-   do k = columna to posiciones
-      if special.fila.k = 'si' then sumar = 'si'
+buscar_candidato:
+   candidatos = 0
+   do j = -1 to 1
+      fil = fila + j
+      do k = -1 to 1
+         col = columna + k
+         aux = substr(numeros.fil,col,1)
+         if aux \= ' ' then candidatos = candidatos + 1
+      end
    end
 return
 
-buscar_abajo:
-   columna = donde - 1
-   fila = i + 1
-   posiciones = columna + digitos + 1
-   do k = columna to posiciones
-      if special.fila.k = 'si' then sumar = 'si'
+buscar_arriba:
+   num_a = ''
+   col = columna   
+   fil = fila - 1
+
+   aux = substr(numeros.fil,col,1)
+   num_a = aux 
+
+   do forever
+      col = col-1
+      aux = substr(numeros.fil,col,1)
+      if aux \= ' ' then do
+         num_a = aux || num_a 
+      end
+      else leave
+   end
+
+   do forever
+      col = col+1
+      aux = substr(numeros.fil,col,1)
+      if aux \= ' ' then do
+         num_a = num_a || aux
+      end
+      else leave
+   end
+return
+
+buscar_arriba:
+   num_b = ''
+   col = columna   
+   fil = fila + 1
+
+   aux = substr(numeros.fil,col,1)
+   num_b = aux 
+
+   do forever
+      col = col-1
+      aux = substr(numeros.fil,col,1)
+      if aux \= ' ' then do
+         num_b = aux || num_b 
+      end
+      else leave
+   end
+
+   do forever
+      col = col+1
+      aux = substr(numeros.fil,col,1)
+      if aux \= ' ' then do
+         num_b = num_b || aux
+      end
+      else leave
+   end
+return
+
+buscar_izq:
+   num_i = ''
+   col = columna   
+   do forever
+      col = col -1
+      aux = substr(numeros.fila,col,1)
+      if aux \= ' ' then do
+         num_i = aux || num_i
+      end
+      else leave
+   end
+return
+
+buscar_derecha:
+   num_d = ''
+   col = columna   
+   do forever
+      col = col + 1
+      aux = substr(numeros.fila,col,1)
+      if aux \= ' ' then do
+         num_i = num_i || aux
+      end
+      else leave
    end
 return
 
@@ -79,6 +131,7 @@ dejar_solo_numeros:
          work.i = changestr(chars.j,work.i," ")
       end
    end
+   numeros. = work.
 return
 
 tabla_coordenadas:
@@ -111,15 +164,6 @@ tabla_coordenadas:
    asterisco.0 = i_ast
    chars.0 = i_char
 
-do i = 1 to asterisco.0
-say asterisco.i 
-end
-
-/* do i = 1 to 12
-   do j = 1 to 12
-      if special.i.j = 'si' then say special.i.j i j
-   end
-end */
 return
 
 leer_fichero:
