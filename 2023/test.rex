@@ -1,3 +1,4 @@
-do j = -1 to 1
-say j
-end
+loop 4
+say hola
+end   
+
