@@ -5,30 +5,29 @@ call tabla_coordenadas
 call dejar_solo_numeros
 Tot = 0
 call proceso
-/* say 'Total = ' Tot  */
+say 'Total = ' Tot
 exit
 
 proceso:
 
    do i = 1 to asterisco.0
-      producto = 1
       parse var asterisco.i fila ',' columna
       fila = strip(fila)
       columna = strip(columna)
       contador = 0
       call buscar_candidato
       if candidatos > 1 then do
+         hay = 0
          call buscar_izq
          call buscar_derecha
+         call buscar_arriba
+         call buscar_abajo
+         if hay > 1 then do
+            prod = strip(num_a * num_b * num_i * num_d)
+            Tot = Tot + prod 
+         end
       end
-
-
-
-/* say 'cont 'contador
-say 'num_i 'num_i
-say 'num_d ' num_d */
    end /* do i */
-
 return
 
 buscar_candidato:
@@ -60,6 +59,7 @@ buscar_arriba:
       else leave
    end
 
+   col = columna
    do forever
       col = col+1
       aux = substr(numeros.fil,col,1)
@@ -68,9 +68,16 @@ buscar_arriba:
       end
       else leave
    end
+   if words(num_a) = 1 then hay = hay + 1
+   if words(num_a) = 2 then do
+      num_a = word(num_a,1) * word(num_a,2)
+      hay = hay + 2
+   end
+   if num_a = '' then num_a = '1'
+   say 'num_a' num_a 'hay 'hay
 return
 
-buscar_arriba:
+buscar_abajo:
    num_b = ''
    col = columna   
    fil = fila + 1
@@ -87,6 +94,7 @@ buscar_arriba:
       else leave
    end
 
+   col = columna
    do forever
       col = col+1
       aux = substr(numeros.fil,col,1)
@@ -95,6 +103,14 @@ buscar_arriba:
       end
       else leave
    end
+
+   if words(num_b) = 1 then hay = hay + 1
+   if words(num_b) = 2 then do
+      num_b = word(num_b,1) * word(num_b,2)
+      hay = hay + 2
+   end
+   if num_b = '' then num_b = '1'
+   say 'num_b' num_b 'hay 'hay
 return
 
 buscar_izq:
@@ -108,6 +124,10 @@ buscar_izq:
       end
       else leave
    end
+   if num_i = '' then num_i = '1'
+   else hay = hay + 1
+
+   say 'num_i' num_i 'hay 'hay
 return
 
 buscar_derecha:
@@ -121,6 +141,10 @@ buscar_derecha:
       end
       else leave
    end
+   if num_d = '' then num_d = '1'
+   else hay = hay + 1
+
+   say 'num_d' num_d 'hay 'hay
 return
 
 dejar_solo_numeros:
@@ -170,7 +194,7 @@ leer_fichero:
    drop in.
    x = 0
    input_file  = 'Day3P1_Input.txt'
-   input_file  = 'temp.txt'
+   /* input_file  = 'temp.txt' */
 
    do while lines(input_file) \= 0
       x = x+1
