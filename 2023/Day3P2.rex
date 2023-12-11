@@ -23,6 +23,7 @@ proceso:
          call buscar_arriba
          call buscar_abajo
          if hay > 1 then do
+            say 'fila 'fila 'col ' columna' num_i ' num_i 'num_d 'num_d 'num_a' num_a 'num_b' num_b 
             prod = strip(num_a * num_b * num_i * num_d)
             Tot = Tot + prod 
          end
@@ -43,11 +44,11 @@ buscar_candidato:
 return
 
 buscar_arriba:
-   num_a = '1'
    col = columna   
    fil = fila - 1
+   num_a = substr(numeros.fil,col,1)
 
-    do forever
+   do forever
       col = col-1
       aux = substr(numeros.fil,col,1)
       if aux \= ' ' then do
@@ -70,14 +71,14 @@ buscar_arriba:
       num_a = word(num_a,1) * word(num_a,2)
       hay = hay + 2
    end
-   
-   say 'num_a' num_a 'hay 'hay
+      if num_a = '' then num_a = '1'
 return
 
+
 buscar_abajo:
-   num_b = '1'
    col = columna   
    fil = fila + 1
+   num_b = substr(numeros.fil,col,1)
 
    do forever
       col = col-1
@@ -103,7 +104,7 @@ buscar_abajo:
       num_b = word(num_b,1) * word(num_b,2)
       hay = hay + 2
    end
-   say 'num_b' num_b 'hay 'hay
+   if num_b = '' then num_b = '1'
 return
 
 buscar_izq:
@@ -118,9 +119,7 @@ buscar_izq:
       else leave
    end
    if num_i = '' then num_i = '1'
-   else hay = hay + 1
-
-   say 'num_i' num_i 'hay 'hay
+   else hay = hay+1
 return
 
 buscar_derecha:
@@ -130,14 +129,12 @@ buscar_derecha:
       col = col + 1
       aux = substr(numeros.fila,col,1)
       if aux \= ' ' then do
-         num_i = num_i || aux
+         num_d = num_d || aux
       end
       else leave
    end
    if num_d = '' then num_d = '1'
-   else hay = hay + 1
-
-   say 'num_d' num_d 'hay 'hay
+   else hay = hay+1
 return
 
 dejar_solo_numeros:
@@ -186,8 +183,9 @@ return
 leer_fichero:
    drop in.
    x = 0
+   input_file  = 'temp.txt'
    input_file  = 'Day3P1_Input.txt'
-   input_file  = 'temp.txt' 
+ 
 
    do while lines(input_file) \= 0
       x = x+1
@@ -217,7 +215,6 @@ copio_record_a_work:
    drop work.
    do i = 1 to record.0
       work.i = record.i
-      /* dxr  say work.i */
    end
    work.0 = record.0
 return
