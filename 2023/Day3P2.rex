@@ -43,14 +43,11 @@ buscar_candidato:
 return
 
 buscar_arriba:
-   num_a = ''
+   num_a = '1'
    col = columna   
    fil = fila - 1
 
-   aux = substr(numeros.fil,col,1)
-   num_a = aux 
-
-   do forever
+    do forever
       col = col-1
       aux = substr(numeros.fil,col,1)
       if aux \= ' ' then do
@@ -73,17 +70,14 @@ buscar_arriba:
       num_a = word(num_a,1) * word(num_a,2)
       hay = hay + 2
    end
-   if num_a = '' then num_a = '1'
+   
    say 'num_a' num_a 'hay 'hay
 return
 
 buscar_abajo:
-   num_b = ''
+   num_b = '1'
    col = columna   
    fil = fila + 1
-
-   aux = substr(numeros.fil,col,1)
-   num_b = aux 
 
    do forever
       col = col-1
@@ -109,7 +103,6 @@ buscar_abajo:
       num_b = word(num_b,1) * word(num_b,2)
       hay = hay + 2
    end
-   if num_b = '' then num_b = '1'
    say 'num_b' num_b 'hay 'hay
 return
 
@@ -194,7 +187,7 @@ leer_fichero:
    drop in.
    x = 0
    input_file  = 'Day3P1_Input.txt'
-   /* input_file  = 'temp.txt' */
+   input_file  = 'temp.txt' 
 
    do while lines(input_file) \= 0
       x = x+1
