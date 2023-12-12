@@ -1,4 +1,5 @@
 /* rexx - Advento of code Day 5-1 - 2023 */
+NUMERIC DIGITS 12
 call leer_fichero
 drop resul.
 do i = 1 to seeds.0
@@ -23,10 +24,10 @@ proceso:
          B = strip(B)
          C = strip(C)
          D = B + C 
-         if seed >= B & seed <= D then do 
+         if seed >= B & seed < D then do 
             seed = seed - B + A
             leave
-         end
+         end         
       end
    end
    say seed
@@ -35,6 +36,7 @@ return
 leer_fichero:
    drop seeds. records. map.
    cont = 0
+
    input_file  = 'temp.txt'
    input_file  = 'Day5P1_Input.txt'
 
