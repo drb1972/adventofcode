@@ -1,4 +1,4 @@
-/* rexx - Advento of code Day 4-1 - 2023 */
+/* rexx - Advento of code Day 4-2 - 2023 */
 call leer_fichero
 Tot = 0
 call proceso
