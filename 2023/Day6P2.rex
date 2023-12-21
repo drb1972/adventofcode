@@ -1,8 +1,5 @@
 /* rexx adventofcode 2023 06 Part 1 */
-
 call leer_fichero
-
-Tot = 1
 call proceso
 say 'Cont_ini 'Cont_ini
 say 'Cont_fin 'Cont_fin
