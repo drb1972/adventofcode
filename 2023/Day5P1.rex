@@ -24,7 +24,7 @@ proceso:
          B = strip(B)
          C = strip(C)
          D = B + C 
-         if seed >= B & seed < D then do 
+         if D > seed <= B then do 
             seed = seed - B + A
             leave
          end         
