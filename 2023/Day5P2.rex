@@ -1,4 +1,4 @@
-/* rexx - Advento of code Day 5-1 - 2023 */
+/* rexx - Advento of code Day 5-2 - 2023 */
 NUMERIC DIGITS 12
 call leer_fichero
 call extend_seeds 

@@ -1,4 +1,4 @@
-/* rexx 2023 Day 8 Part1 */
+/* rexx 2023 Day 8 Part2 */
 NUMERIC DIGITS 18
 call leer_fichero
 Tot = ''

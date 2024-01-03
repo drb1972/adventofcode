@@ -1,4 +1,4 @@
-/* rexx - Advento of code Day 3 - 2023 */
+/* rexx - Advento of code Day 3-2 - 2023 */
 
 call leer_fichero
 call tabla_coordenadas

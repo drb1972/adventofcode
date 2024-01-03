@@ -1,4 +1,4 @@
-/* rexx 2023 Day 7 Part1 */
+/* rexx 2023 Day 7 Part2 */
 call init
 call leer_fichero
 
