@@ -6,6 +6,7 @@ Tot = 0
 call proceso
 do i = 1 to map.0
    Tot = Tot + map.i.total
+   say map.i.head map.i.total
 end
 say 'Tot:' Tot
 exit
@@ -34,7 +35,7 @@ proceso:
             temp = copies('#',word(map.i.tale,k))
             if word(changestr('.',bin.ll.j,' '),k) <> temp then iterate label2
          end
-         /* say bin.ll.j */
+         say bin.ll.j
          map.i.total = map.i.total+1
       end /* do j */
       /* say map.i.total */
@@ -76,8 +77,8 @@ mapeo:
 return
 
 leer_fichero:
-   input_file  = 'temp.txt'
    input_file  = 'Day12_Input.txt'
+   input_file  = 'temp.txt'
 
    drop map.
    i = 0
