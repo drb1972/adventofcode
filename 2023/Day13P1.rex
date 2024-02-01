@@ -10,6 +10,7 @@ do j = 1 to mirrors.0
       search = 'ver'
       call process
    end
+   say 'ignorar.'|| j '=' i || search
    Tot = Tot+SubTot
 end /*do j */
 
@@ -41,7 +42,10 @@ process:
       if check = 'true' & search = 'hor' then SubTot = i * 100
       if check = 'true' & search = 'ver' then SubTot = i 
       /* say 'SubTot:' SubTot */
-      if check = 'true' then return
+      if check = 'true' then do 
+         say 'j i sub:'j i search SubTot
+         return
+      end
    end
 return
 
@@ -79,7 +83,6 @@ return
 leer_fichero:
    input_file  = 'temp.txt'
    input_file  = 'Day13_Input.txt'
-
    drop mirrors.
    i = 0
    j = 1
