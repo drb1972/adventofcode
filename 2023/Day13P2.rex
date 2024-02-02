@@ -1,4 +1,4 @@
-/* rexx 2023 Day 13 Part1 */
+/* rexx 2023 Day 13 Part2 */
 call leer_fichero
 Tot = 0
 do j = 1 to mirrors.0
