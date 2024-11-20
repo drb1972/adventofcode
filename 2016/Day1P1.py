@@ -1,4 +1,4 @@
-# rexx - Advento of code Day 1-1 - 2016 
+# python - Advent of code Day 1-1 - 2016 
 
 # Abrimos el archivo en modo lectura
 with open('Day1_Input.txt', 'r') as archivo:
