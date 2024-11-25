@@ -1,4 +1,5 @@
 # rexx - Advent of code Day 2-1 - 2016 
+# con variable compleja
 
 # Abro el archivo en modo lectura
 with open('Day2_Input.txt', 'r') as f:
@@ -8,8 +9,8 @@ with open('Day2_Input.txt', 'r') as f:
 number=''
 
 def find():
-   # global pos
-   # global char
+   global pos
+   global char
    if   char=='U' and pos.real!=1: pos=pos-(1+0j)
    elif char=='D' and pos.real!=3: pos=pos+(1+0j)
    elif char=='L' and pos.imag!=1: pos=pos-(0+1j)
@@ -17,7 +18,7 @@ def find():
    return(char,pos)
 
 def trans():
-   # global number
+   global number
    if   pos==1+1j: number=number+'1'
    elif pos==1+2j: number=number+'2'
    elif pos==1+3j: number=number+'3'
