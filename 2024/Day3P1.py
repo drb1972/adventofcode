@@ -1,4 +1,4 @@
-# python - Advent of code Day 2-31 - 2024 
+# python - Advent of code Day 3-1 - 2024 
 import time
 start_time = time.time()
 
