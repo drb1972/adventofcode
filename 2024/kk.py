@@ -1,5 +1,7 @@
-dict={3: 3, 4: 1, 5: 1, 9: 1}
+lista = [1, 2, 3, 4, 5]
+for i in lista:
+    print(i)
 
-i = 3
-dict.setdefault(i,0)
-print(dict)
+lista.remove(8)
+
+print(lista)
